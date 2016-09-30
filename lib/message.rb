@@ -6,8 +6,8 @@ Dotenv.load
 class Message
 
   def initialize
-    api_sid = ENV.fetch('TWILIO_ACCOUNT_SID')
-    api_auth = ENV.fetch('TWILIO_ACCOUNT_AUTH')
+    api_sid = 'AC71091e45b8b259664e487539658c839d'
+    api_auth = '252d0d6447352f65aacd42e6870395bb'
     @client = Twilio::REST::Client.new api_sid, api_auth
   end
 
@@ -15,8 +15,8 @@ class Message
 
      client.account.messages.create(
          :to => '+447756685861',
-         :from => '+441631402037',
-         :body => "Thank you! Your order was placed and will be delivered before #{((Time.new.hour) + 1)}:#{Time.new.min}"
+         :from => '+441234480277',
+         :body => "Thank you! Your order was placed and will be delivered by #{Time.new + 60*60}"
      )
   end
 
