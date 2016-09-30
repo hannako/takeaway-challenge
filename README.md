@@ -47,25 +47,20 @@ I would like to receive a text such as "Thank you! Your order was placed and wil
 ## How to use
 
 ```
-2.2.3 :001 > t = TakeAway.new
- => #<TakeAway:0x007f975b1a39a8 @menu=#<Menu:0x007f975b1a3890 @dishes={"spring roll"=>0.99, "char sui bun"=>3.99, "pork dumpling"=>2.99, "peking duck"=>7.99, "fu-king fried rice"=>5.99}>, @basket={}, @text_provider=#<TwilioAPI:0x007f975b1a33e0>>
-2.2.3 :002 > t.read_menu
- => {"spring roll"=>0.99, "char sui bun"=>3.99, "pork dumpling"=>2.99, "peking duck"=>7.99, "fu-king fried rice"=>5.99}
-2.2.3 :003 > t.order 'spring roll'
- => "1x spring roll(s) added to your basket."
-2.2.3 :004 > t.order 'spring roll'
- => "1x spring roll(s) added to your basket."
-2.2.3 :005 > t.order 'spring roll', 4
- => "4x spring roll(s) added to your basket."
-2.2.3 :006 > t.basket_summary
- => "spring roll x4 = £3.96"
-2.2.3 :007 > t.add 'pork dumpling', 3
- => "3x pork dumpling(s) added to your basket."
-2.2.3 :008 > t.basket_summary
- => "spring roll x4 = £3.96, pork dumpling x3 = £8.97"
-2.2.3 :009 > t.total
- => "Total: £12.93"
-2.2.3 :010 > c.checkout(12.93)
+2.3.1 :001 > require './lib/restaurant.rb'
+2.3.1 :003 > r= Restaurant.new
+ => #<Restaurant:0x007fcab48f88c0 @menu=#<Menu:0x007fcab48f8870 @menu={:Chicken=>3.5, :Noodles=>3.5, :Salad=>4.0, :Cake=>2.5}, @printed_menu=[]>, @message=#<Message:0x007fcab48f87f8 @client=<Twilio::REST::Client @account_sid=AC9b03bcfa6a4bb3deadfd13d6ec46358c>>, @order={}, @basket=[]>
+2.3.1 :004 > r.show_menu
+ => "Chicken: £3.50, Noodles: £3.50, Salad: £4.00, Cake: £2.50"
+ 2.3.1 :005 > r.order_dish(dish:'Noodles',quantity:2)
+ => "2 x Noodles ordered."
+2.3.1 :006 > r.display_basket
+ => "Noodles x 2 = £7.00"
+2.3.1 :007 > r.dis
+r.display         r.display_basket  r.display_total
+2.3.1 :007 > r.display_total
+ => "Total: £7.00"
+2.3.1 :008 > r.checkout("7.00")
 ```
 
 

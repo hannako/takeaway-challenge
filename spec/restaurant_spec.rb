@@ -38,11 +38,11 @@ let(:message) {double(:message, send_confirmation: "Thank you! Your order was pl
     end
 
     it "they can check what's in their basket" do
-      expect(restaurant.view_basket).to eq "Noodles x 4 = £14.00 chicken x 2 = £7.00"
+      expect(restaurant.display_basket).to eq "Noodles x 4 = £14.00, chicken x 2 = £7.00"
     end
 
     it "they can see their total bill" do
-      expect(restaurant.total).to eq "Total: £21.00"
+      expect(restaurant.display_total).to eq "Total: £21.00"
     end
 
   end
@@ -57,11 +57,11 @@ let(:message) {double(:message, send_confirmation: "Thank you! Your order was pl
 
       it 'will generate a message confirming order' do
         sms = "Thank you! Your order was placed and will be delivered before 18:52"
-        expect(restaurant.checkout(14.00)).to eq sms
+        expect(restaurant.checkout("14.00")).to eq sms
       end
 
-      xit 'will raise an error if the incorrect amount is paid' do
-        expect{restaurant.checkout(15.00)}.to raise_error 'Cannot place order: Incorrect amount entered. Please try again'
+      it 'will raise an error if the incorrect amount is paid' do
+        expect{restaurant.checkout("15.00")}.to raise_error 'Cannot place order: Incorrect amount entered. Please try again'
       end
 
     end
